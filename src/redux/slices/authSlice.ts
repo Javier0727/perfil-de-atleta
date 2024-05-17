@@ -24,4 +24,6 @@ export const { loginSuccess, logout } = authSlice.actions;
 export const authData = (state: any) => state.authState;
 export const isAuthenticated = (state: any) => state.authState.isAuthenticated;
 export const userRole = (state: any) => state.authState.user?.role;
+export const athleteParametersData = (state: any) =>
+  state.authState.user.parameters;
 export default authSlice.reducer;

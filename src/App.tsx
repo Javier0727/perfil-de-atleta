@@ -9,6 +9,10 @@ import {
 import Login from "./components/Login";
 import { isAuthenticated, userRole } from "./redux/slices/authSlice";
 import { RoleEnum } from "./types/types";
+import { AdminLayout } from "./layouts/adminLayout";
+import { AthleteLayout } from "./layouts/athleteLayout";
+import AdminDashboardPage from "./components/admin/dashboard";
+import AthleteDashboardPage from "./components/athlete/dashboard";
 
 function App() {
   const isAuthenticatedFlag = useSelector(isAuthenticated);
@@ -18,17 +22,20 @@ function App() {
     <Router>
       <Routes>
         {isAuthenticatedFlag && userRoleFlag === RoleEnum.Admin && (
-          <Route path="/admin">
-            <Route path="dashboard" element={<div>Dashboard!</div>} />
-            <Route path="export" element={<div>Actualizar parametro!</div>} />
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route path="dashboard" element={<AdminDashboardPage />} />
+            <Route
+              path="export"
+              element={<div>Exportar perfiles de atleta!</div>}
+            />
           </Route>
         )}
         {isAuthenticatedFlag && userRoleFlag === RoleEnum.Athlete && (
-          <Route path="/athlete">
-            <Route path="dashboard" element={<div>Agregar parametro!</div>} />
+          <Route path="/athlete" element={<AthleteLayout />}>
+            <Route path="dashboard" element={<AthleteDashboardPage />} />
             <Route
               path="add-parameter"
-              element={<div>Actualizar parametro!</div>}
+              element={<div>Añadir parametro!</div>}
             />
             <Route
               path="update-parameter"

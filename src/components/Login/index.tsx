@@ -25,27 +25,7 @@ import {
   loginSuccess,
   userRole,
 } from "../../redux/slices/authSlice";
-
-function Copyright(props: any) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link
-        color="inherit"
-        href="https://www.facebook.com/profile.php?id=100001624689766"
-      >
-        #EasyShet
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+import { Copyright } from "../Copyright";
 
 const Login = () => {
   const isAuthenticatedFlag = useSelector(isAuthenticated);
@@ -83,6 +63,23 @@ const Login = () => {
   const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
+    if (email === "javier@cross.com" && password === "Password123") {
+      const user = baseDocument.find((user: any) => user.email === email);
+      if (user) {
+        dispatch(
+          loginSuccess({
+            id: user.id,
+            name: user.name,
+            lastName: user.lasName,
+            role: user.role,
+            email: user.email,
+            parameters: user.parameters,
+          })
+        );
+        navigate("/athlete/dashboard");
+        return;
+      }
+    }
     if (email === "oscar@cross.com" && password === "Password123") {
       const user = baseDocument.find((user: any) => user.email === email);
       if (user) {
@@ -105,24 +102,6 @@ const Login = () => {
           })
         );
         navigate("/admin/dashboard");
-        return;
-      }
-    }
-    if (email === "javier@cross.com" && password === "Password123") {
-      const user = baseDocument.find((user: any) => user.email === email);
-      if (user) {
-        dispatch({
-          type: LOGIN_SUCCESS,
-          payload: {
-            id: user.id,
-            name: user.name,
-            lastName: user.lasName,
-            role: user.role,
-            email: user.email,
-            parameters: user.parameters,
-          },
-        });
-        navigate("/athlete/dashboard");
         return;
       }
     }
