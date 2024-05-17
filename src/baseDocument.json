@@ -1,0 +1,46 @@
+[
+  {
+    "id": 1,
+    "name": "Oscar",
+    "lasName": "Cross",
+    "email": "oscar@cross.com",
+    "passwordHash": "$2y$10$X593pTU7bfusLfhHu9LTdelBfDTonYFenGg0WREOByZesTDisMPqy",
+    "role": "admin"
+  },
+  {
+    "id": 2,
+    "name": "Javi",
+    "lasName": "Cross",
+    "email": "javi@cross.com",
+    "gender": "male",
+    "passwordHash": "$2y$10$X593pTU7bfusLfhHu9LTdelBfDTonYFenGg0WREOByZesTDisMPqy",
+    "role": "athlete",
+    "parameters": {
+      "pushups": 10,
+      "kippingPullUpsOrButterfly": 10,
+      "strictPullUps": 3,
+      "t2b": 10,
+      "kippingHSPU": 3,
+      "c2b": 5,
+      "mbu": 1,
+      "rmu": 1,
+      "ropeClimbLegless": 1,
+      "backSquat": "205 lb",
+      "frontSquat": "185 lb",
+      "deadlift": "245 lb",
+      "strictPress": "115 lb",
+      "benchPress": "155 lb",
+      "squatClean": "165 lb",
+      "poweClean": "155 lb",
+      "squatSnatch": "115 lb",
+      "powerSnatch": "105 lb",
+      "cleanAndJerk": "145 lb",
+      "jerk": "165 lb",
+      "run5k": "00:30:00",
+      "row1k": "00:04:10",
+      "row5k": "00:20:00",
+      "du": 50,
+      "burpees7min": 90
+    }
+  }
+]

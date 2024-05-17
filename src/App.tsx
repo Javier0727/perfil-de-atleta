@@ -1,25 +1,45 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useSelector } from "react-redux";
+import {
+  Navigate,
+  Route,
+  BrowserRouter as Router,
+  Routes,
+} from "react-router-dom";
+import Login from "./components/Login";
+import { isAuthenticated, userRole } from "./redux/slices/authSlice";
+import { RoleEnum } from "./types/types";
 
 function App() {
+  const isAuthenticatedFlag = useSelector(isAuthenticated);
+  const userRoleFlag = useSelector(userRole);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        {isAuthenticatedFlag && userRoleFlag === RoleEnum.Admin && (
+          <Route path="/admin">
+            <Route path="dashboard" element={<div>Dashboard!</div>} />
+            <Route path="export" element={<div>Actualizar parametro!</div>} />
+          </Route>
+        )}
+        {isAuthenticatedFlag && userRoleFlag === RoleEnum.Athlete && (
+          <Route path="/athlete">
+            <Route path="dashboard" element={<div>Agregar parametro!</div>} />
+            <Route
+              path="add-parameter"
+              element={<div>Actualizar parametro!</div>}
+            />
+            <Route
+              path="update-parameter"
+              element={<div>Actualizar parametro!</div>}
+            />
+          </Route>
+        )}
+        <Route path="/login" element={<Login />} />
+        <Route path="*" element={<Navigate to="/login" />} />
+      </Routes>
+    </Router>
   );
 }
 
